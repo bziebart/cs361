@@ -1,0 +1,100 @@
+{% autoescape true %}
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title> Syllabus Generator </title>
+   <link rel="stylesheet" href="/stylesheets/style.css">
+      <style type="text/css">
+#s3{color:white; background-color:black; }
+#content{margin: 70px 0px 0px 113px;}
+#submitDiv{    text-align: center;
+    margin: 25px 0px 0px 0px;}
+		#saveButton,#loadButton,#generateScale
+	{
+    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}
+	#saveButton:hover,#loadButton:hover,#generateScale:hover
+	{
+		background-color:#FFDE80;
+	}
+  </style>
+</head>
+
+<body>
+  <div id='mainDiv'>
+  <a href='/' id='logout'>Logout</a>
+  <div>
+  <div id='navigation'>
+	<div id='panther'>
+		<img src="/stylesheets/panther.png" alt="" id="pantherImage">
+	</div>
+        <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+        </div>
+  </div>
+  <div id='content'>
+  <h2>Grading Scale</h2>
+  <div id = 'scaleNameDiv' >
+  <form id = generateForm method = 'post', action = '' autocomplete="off">
+			Name:  <input type='text' name='name' size=20 value='{{name}}' > Size: <input type='number' name='size'  maxlength = 2  value = {{size}} />
+			<input id = generateScale type = 'submit' value = 'Generate Scale' name = 'generate'>			
+  </form>
+		
+  </div>
+  <form id = saveForm method = 'post', action = '' autocomplete="off">		
+    <div>
+      <table style="width:50%">
+        <tr>
+			{% for i in range (0,scale|length) %}
+			<td><input type='text' name='letter{{i}}' size=1 maxlength=2 value={{scale[i].letter}} '' /></td>
+			{% endfor %}
+        </tr >
+		<tr>
+			{% for i in range (0,scale|length) %}
+			<td><input type='number' name='grade{{i}}' size=1 maxlength=2 value={{scale[i].grade}} style ="width:36px;" /></td>
+			{% endfor %}
+        </tr>
+      </table>
+    </div>
+    <div id='submitDiv'>
+	  
+
+	Previous Grade Scales: <select name ='previousScale'>
+			{% for i in range (0,gradeScales|length) %}
+			<option value='{{i}}'>{{gradeScales[i].name}}</option>
+			{% endfor %}
+			</select>
+      <input type='submit' id='loadButton' value='Load' name = 'generate'>
+      <input type='submit' id='saveButton' value='Save' name = 'generate'>
+	  </form>
+    </div>
+	</div>
+  </div>
+  		<div id='pagingDiv'>
+			<a href='/display' id='leftButton' class='button'>Back</a>
+			<a href='/policy' id='rightButton' class='button'>Next</a>
+		</div>
+		</div>
+  </div>
+</body>
+
+</html>
+
+{% endautoescape %}

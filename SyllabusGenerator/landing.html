@@ -1,0 +1,35 @@
+{% autoescape true %}
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title> Syllabus Generator </title>
+  <link rel="stylesheet" href="/stylesheets/landing.css">
+</head>
+
+<body>
+  <div id='mainDiv'>
+  <div id='navigation'>
+	<div id='panther'>
+		<img src="/stylesheets/panther.png" alt="" id="pantherImage">
+	</div>
+		
+	<div id='pantherText'>
+		<img src="/stylesheets/milwaukeelogo.png" alt="" id="pantherTextImage">
+	</div>
+  </div>
+	<div id='landingDiv'>
+		<div id='inputDiv'>
+			<input type = 'text' name='userId' placeholder='User ID' onfocus="this.placeholder = ''" onblur="this.placeholder = 'User ID'" id='userId'/><br/>
+			<input type = 'text' name='userPassword' placeholder='Password' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" id='userPassword'/><br/>
+		</div>
+		<div id='buttonDiv'>
+			<a href='/select' id='loginButton' class='button'>Log In</a>
+			<a href='/select' id='newUserButton' class='button'>New User</a>
+		</div>
+	</div>
+  </div>
+</body>
+
+</html>
+{% endautoescape %}

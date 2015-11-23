@@ -1,0 +1,236 @@
+﻿{% autoescape true %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Syllabus Generator </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/preview.css">
+	<style type="text/css">
+#s6{color:white; background-color:black; }
+
+  </style>
+</head>
+
+<body>
+  <div id='mainDiv'>
+	<a href='/' id='logout'>Logout</a>
+	<div>
+	  <div id='navigation'>
+		<div id='panther'>
+		  <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+		</div>
+		<div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+		</div>
+	  </div>
+	  <div>
+	  
+	  </div>
+	  <div id='content'>
+			<!Start of Preview>
+			<div name='preview' align='center' display='block'>
+			<style>
+				table, th, td 
+				{
+					border: 1px solid black;
+					border-collapse: collapse;
+					margin: 10px auto;
+					text-align:center;
+				}
+				table{
+					width: 80%
+				}
+			
+				#content{
+					position: absolute;
+					overflow-y: scroll;
+					height: 425px;
+				}
+				#b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b10, #b11
+				{
+				border: 0 none;
+				border-radius: 10px;
+				background-color: #FFbd00;
+				color: black;
+				cursor: pointer;
+				display: inline-block;
+				font-size: 14px;
+				width: 125px;
+				padding: 5px 0px;
+				margin: 10px auto;
+				box-shadow: -1px 1px 2px;
+				text-decoration: none;
+				}
+				#b1:hover, #b2:hover, 
+				#b3:hover, #b4:hover, #b5:hover, #b6:hover, #b7:hover, #b8:hover,#b10:hover, #b11:hover
+				{
+					background-color:#FFDE80;
+				}
+			</style>
+			
+			<input type = 'submit' id='b1' value="Save Syllabus" />
+			<input type = 'submit' id='b2' value="Post Syllabus" />
+
+			<input type = 'submit' id='b3' value="Print" />
+			<input type = 'submit' id='b4' value="Cancel" />
+			
+			<div class="syllabus-display">
+			<ul style="list-style-type:none">
+				<div id="course-title" style="font-size: 32px;">
+					{{dept_code}} {{courseNumber}}: {{title}}
+				</div>
+					Syllabus & Homepage: <a href="{{syllabiLink}}">{{syllabiLink}}</a><br><br>
+				<div id="course-info">
+				<li><b>Course Information</b>
+				<ul>
+					<table border="1" style="width:100%">
+						<tr>
+							<th>Instructor</th>
+							<th>Class</th> 
+							<th>Office</th>
+						</tr>
+						<tr>
+							<td>{{instrname}}</td>
+							<td>{{dept_code}} {{courseNumber}}-{{sectionNumber}} {{courseLocation}} {{weekdayString}}</td> 
+							<td>{{instrRoom}} <br>Office Hours: {{officeHours}} </td>
+						</tr>
+						<tr>
+							<td>{{TAname}}</td>
+							<td></td> 
+							<td>{{TAroom}} <br>Office Hours: {{TAhours}} </td>
+						</tr>
+					</table>
+				</ul>
+				</li>
+				</div>
+				<div id="textbooks">
+				<li><b>Textbooks</b>
+					<ul>
+					<table border="1" style="width:100%">
+					{% for i in books %}
+						<tr>
+							<td>{{i.name}}, {{i.author}}, {{i.edition}}, ISBN: {{i.isbn}}</td>
+						</tr>
+					{% endfor %}
+					</table>
+					</ul>
+				</li>
+				</div>
+				<div id="grading">
+				<li><b>Assessment & Grading Scale</b>
+				<ul>
+				<table border="1" style="width:100%">
+					<tr>
+						<th>Assessment</th>
+						<th> </th> 
+					</tr>
+					
+					<tr>
+						<td>{{assessItem}}<br>{{assessPercent}}%</td>
+						<td>{{assessDesc}}</td> 
+					</tr>
+
+				</table>
+				<table style="width:100%">
+				<tr>
+					<td><b>Grade Scale</td>
+				</tr>
+				<tr><td>
+				<table style="width:50%">
+					<tr>
+						{% for i in range (0,scale|length) %}
+						<td>{{scale[i].letter}}</td>
+						{% endfor %}
+					</tr >
+					<tr>
+						{% for i in range (0,scale|length) %}
+						<td>{{scale[i].grade}}</td>
+						{% endfor %}
+					</tr>		
+				</table>
+				</td></tr>
+				</table>
+				</ul>
+				</li>
+				</div>
+				<div id="policy">
+				<li><b>Academic Policy</b>
+				<ul>
+				<table border="1" style="width:100%">
+					{% for i in range(0,1) %}
+					<tr>
+						<th>Academic Misconduct</th>
+					</tr>
+					<tr>
+						<td>The university has a responsibility to promote academic honesty and integrity and to develop procedures to deal effectively with instances of academic dishonesty. Students are responsible for the honest completion and representation of their work, for the appropriate citation of sources, and for respect of others' academic endeavors. A more detailed description of Student Academic Disciplinary Procedures may be found at <a href="http://www4.uwm.edu/acad_aff/policy/academicmisconduct.cfm"http://www4.uwm.edu/acad_aff/policy/academicmisconduct.cfm</a></td>
+					</tr>
+					{% endfor %}
+				</table>
+				</ul>
+			  </li>
+			  </div>
+			  <div id="calendar">
+			  <li><b>Calendar</b>
+				<ul>
+				<table>
+					{% set itemNumber = 0 %}
+					
+					<tr>
+						<th>Week Of</th>
+						{% if "M" in weekdayString %}
+							<th>Monday</th>
+						{% endif %}
+						{% if "Tu" in weekdayString %}
+							<th>Tuesday</th>
+						{% endif %}
+						{% if "W" in weekdayString %}
+							<th>Wednesday</th>
+						{% endif %}
+						{% if "Th" in weekdayString %}
+							<th>Thursday</th>
+						{% endif %}
+						{% if "F" in weekdayString %}
+							<th>Friday</th>
+						{% endif %}
+						{% if "Sa" in weekdayString %}
+							<th>Saturday</th>
+						{% endif %}
+						{% if "Su" in weekdayString %}
+							<th>Sunday</th>
+						{% endif %}
+						
+					</tr>
+					{% for i in range(0,weeksInTerm) %}
+					<tr>
+						<td>{{startDate.strftime('%m/%d')}}</td>
+						{% for day in range (0, daysInWeek) %}
+						<td>{{ItemList[itemNumber]}}</td> 
+						{% set itemNumber = itemNumber+1 %}
+						{% endfor %}
+						{% set startDate = startDate + oneWeek %}
+						{% set itemNumber = itemNumber + daysInWeek %}
+					</tr>
+					{% endfor %}
+				</table>
+				</ul>
+			  </li>
+			  </div>
+			</ul>
+			</div>
+			<!End of Preview>
+		</div>
+	</div>
+	<div id='pagingDiv'>
+	  <a href='/lecture' id='rightButton' class='button'>Next</a>
+	</div>
+  </div>
+</body>
+
+</html>
+{% endautoescape %}

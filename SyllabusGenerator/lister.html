@@ -1,0 +1,25 @@
+<html>
+	<head><title>1 - {{ n }}</title>
+		<link href="stylesheets/style.css" type="text/css" rel="stylesheet"/></head>
+	<body>
+		<h1>Your random number: {{r}}</h1>
+		<br/>
+		<table>
+			<thead>
+				<tr id = 'header'>
+					<td>Random Number</td>
+					<td>Seed Number</td>
+				</tr>
+			</thead>
+			<tbody>
+			{% for i in range (0,my_list|length) %}
+				<tr>
+					<td>{{my_list[i]}} </td>
+					<td>{{my_list2[i]}} </td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		<br/>
+	</body>
+</html>

@@ -1,0 +1,189 @@
+{% autoescape true %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <title> Syllabus Generator </title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+      <style type="text/css">
+         #s5{color:white; background-color:black; }
+      </style>
+   </head>
+   <body>
+      <form id = addCalendarForm method = 'post', action = ''>
+         <div id='mainDiv'>
+            <a href='/' id='logout'>Logout</a>
+            <div>
+               <div id='navigation'>
+                  <div id='panther'>
+                     <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+                  </div>
+                  <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+                  </div>
+               </div>
+               <div id='content'>
+                  <style>
+                     table, th, td 
+                     {
+                     border: 1px solid black;
+                     border-collapse: collapse;
+                     margin: 10px auto;
+                     text-align:center;
+                     }
+                     table
+                     {
+                     width:80%;
+                     }
+                     #addCalendarForm
+                     {
+                     text-align:center;
+                     }
+                     #content
+                     {
+                     width: 100%;
+                     height:425px;
+                     }
+                     #calendarButton {
+                     border: 0 none;
+                     border-radius: 10px;
+                     background-color: #FFbd00;
+                     color: black;
+                     cursor: pointer;
+                     display: inline-block;
+                     font-size: 14px;
+                     /* width: 80%; */
+                     padding: 6px 15px;
+                     margin: 10px auto 10px 0%;
+                     box-shadow: -1px 1px 2px;
+                     text-decoration: none;
+                     }
+                     #calendarSaveButton:hover,#calendarLoadButton:hover,#calendarButton:hover
+                     {
+                     background-color:#FFDE80;
+                     }
+                     #calendarSaveButton,#calendarLoadButton{
+                     border: 0 none;
+                     border-radius: 10px;
+                     background-color: #FFbd00;
+                     color: black;
+                     cursor: pointer;
+                     display: inline-block;
+                     font-size: 14px;
+                     width: 25%;
+                     padding: 6px 0px;
+                     margin: 6px auto 12px 17px;
+                     box-shadow: -1px 1px 2px;
+                     text-decoration: none;
+                     }
+                     #calendarLoadButton{
+                     margin: 0px 0px 0px 22px;
+                     }
+                     .test{border:none;}
+                     #table-wrapper {
+                     position:relative;
+                     }
+                     #table-scroll {
+                     height: 250px;
+                     overflow: auto;
+                     /* margin-top: 20px; */
+                     margin: 20px 0px 10px 25px;
+                     width: 95%;
+                     }
+                     #table-wrapper table {
+                     width:100%;
+                     }
+                     #table-wrapper table * {
+                     color:black;
+                     }
+                     #table-wrapper table thead th .text {
+                     position:absolute;   
+                     top:-20px;
+                     z-index:2;
+                     height:20px;
+                     }
+                     #s1, #s2, #s3, #s4, #s5, #s6 {
+                     transform: skewX(-20deg);
+                     padding: 10px 10px;
+                     position: relative;
+                     text-align: center;
+                     right: -92px;
+                     border-radius: 0px;
+                     top: -10px;
+                     }
+                     #saveCalDiv{ margin: 0px 0px 0px 25px;}
+                     span{margin: 0px 0px 0px -30px;}
+                  </style>
+                  <div id="table-wrapper">
+                     <div id="table-scroll">
+                        <table>
+                           {% set itemNumber = 0 %}
+                           <thead>
+                              <tr>
+                                 <th><span class="text">Week Of</span></th>
+                                 {% if "M" in weekdayString %}
+                                 <th><span class="text">Monday</span></th>
+                                 {% endif %}
+                                 {% if "Tu" in weekdayString %}
+                                 <th><span class="text">Tuesday</span></th>
+                                 {% endif %}
+                                 {% if "W" in weekdayString %}
+                                 <th><span class="text">Wednesday</span></th>
+                                 {% endif %}
+                                 {% if "Th" in weekdayString %}
+                                 <th><span class="text">Thursday</span></th>
+                                 {% endif %}
+                                 {% if "F" in weekdayString %}
+                                 <th><span class="text">Friday</span></th>
+                                 {% endif %}
+                                 {% if "Sa" in weekdayString %}
+                                 <th><span class="text">Saturday</span></th>
+                                 {% endif %}
+                                 {% if "Su" in weekdayString %}
+                                 <th><span class="text">Sunday</span></th>
+                                 {% endif %}
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for thing in range(0,weeksInTerm) %}
+                              <tr>
+                                 <td>{{startDate.strftime('%m/%d')}}</td>
+                                 {% for day in range (0, daysInWeek) %}
+                                 <td><input type="text" name={{"Item" + itemNumber|string}} value='{{ItemList[itemNumber]}}' class ='test'/></td>
+                                 {% set itemNumber = itemNumber+1 %}
+                                 {% endfor %}
+                                 {% set startDate = startDate + oneWeek %}
+                                 {% set itemNumber = itemNumber + daysInWeek %}
+                              </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <input id = calendarButton type = 'submit' value = 'Submit Calendar Information' name = 'generate'/></br>
+                  <div id = 'saveCalDiv'>
+                     Calendar Name: <input id = calendarName type = 'text' name = 'calendarName' style = "width:200px;" value = '{{calendarName}}' />
+                     <input id = calendarSaveButton type = 'submit' value = 'Save Calendar Information' name = 'generate'/> </br>
+                  </div>
+                  Previous Calendars: 
+                  <select name ='previousCalendars' style = "width:200px;">
+                     {% for i in range (0,calendars|length) %}
+                     <option value='{{calendars[i].name}}'>{{calendars[i].name}}</option>
+                     {% endfor %}
+                  </select>
+                  <input id = calendarLoadButton type = 'submit' value = 'Load Calendar Information' name = 'generate'/>
+               </div>
+            </div>
+            <div id='pagingDiv'>
+               <a href='/policy' id='leftButton' class='button'>Back</a>
+               <a href='/preview' id='rightButton' class='button' style = "padding: 8px 15px;">Next</a>
+            </div>
+         </div>
+      </form>
+   </body>
+</html>
+{% endautoescape %}

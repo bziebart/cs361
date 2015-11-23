@@ -1,0 +1,103 @@
+<html>
+
+<head>
+  <title> Syllabus Generator </title>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel='stylesheet' href='stylesheets/textbook2.css'>
+</head>
+
+
+<body>
+  <div id='mainDiv'>
+    <a href='/' id='logout'>Logout</a>
+    <div>
+      <div id='navigation'>
+        <div id='panther'>
+          <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+        </div>
+        <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+        </div>
+      </div>
+      <div id='content'>
+<form action='/command' method='post'>
+  <div id='main'>
+    <div id='courseOption'>
+      <div id='selectCourse'>
+          <h1 id='listName'>Course</h1>
+            <select name='Course' size='5' id='Course'></br>
+                {% for c in courseList %}
+                  <option value='{{ c.cKey }}'>{{ c.department ~ c.courseNumber }}</option>
+                {% endfor %}
+                <option value='showAll'>---Show All Books---</option>
+            </select>
+      </div>
+      <div id='addCourse'>
+        <ul id='u2'>
+                <input type='submit' id='rmCourseButton' value='Remove Course' name='removeCourse'/></br>
+            New Course</br>
+            Department: <input type='text' id='department' name='dep'></input></br>
+            Course Number: <input type='text' id='cnumber' name='num'></input></br>
+            <input type='submit' id='addCourseButton' value='Add Course' name='addCourse'></input>
+        </ul>
+      </div>
+    </div>
+    <div id='textbookOption'>
+      <div id='selectTextbook'>
+          <h1 id='listName'>Textbook</h1>
+            <select name='Textbook' size='5' id='book' multiple>
+              {% if noCourse %}
+                {% for c in courseList %}
+                   {% for b in c.bookList %}
+                    <option value='{{ b.bKey }}'>{{ b.name ~ ', ' ~ b.edition ~ ', ' ~ b.author ~ ', ' ~ b.isbn ~ ' ' ~ c.department ~ c.courseNumber }}</option>
+                  {% endfor %}
+                {% endfor %}
+              {% else %}
+                {% for b in displayCourse %}
+                  <option value='{{ b.bKey }}'>{{ b.name ~ ', ' ~ b.edition ~ ', ' ~ b.author ~ ', ' ~ b.isbn }}</option>
+                {% endfor %}
+              {% endif %}
+
+              <!--{% for b in storedBooks %}
+                  <option value='{{ b.mark }}'>{{ b.name ~ ', ' ~ b.edition ~ ', ' ~ b.author ~ ', ' ~ b.isbn }}</option>
+              {% endfor %}-->
+
+                <option value='size'>---------------------------------------Select---------------------------------------</option>
+            </select> </br>
+      </div>
+      <div id='addTextbook'>
+          <ul id='u3'>
+            <p style='font-size:12; color:gray'><i>(Title, Edition, Author, ISBN, Course Number)</i></br>
+            <i>(ex. Cat in the Hat, 1st, Seuss, 5544332211, CompSci180)</i></p>
+                <input type='submit' id='rmBookButton' value='Remove Book' name='removeBook'/></br></br></br>
+                New Book</br>
+                Title: <input type='text' name='name' id='newBook'/></br>
+                Edition: <input type='text' name='edition' id='ed'/></br>
+                Author: <input type='text' name='author' id='author'/></br>
+                ISBN: <input type='text' name='isbn' id='isbn'/></br>
+                <input type='submit' value='Add Book' id='addBookButton' name='addBook'/>
+          </ul>
+        <input type='submit' id='selectButton' value= 'Select Course' name='chooseCourse'/>
+        <input type='submit' id='selectBook' value='Select Book' name='chooseBook' class='button'/>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+      </div>
+    </div>
+    <div id='pagingDiv'>
+      <a href='/lecture' id='leftButton' class='button'>Back</a>
+      <a href='/gradescale' id='rightButton' class='button'>Next</a>
+    </div>
+  </div>
+</body>
+
+</html>

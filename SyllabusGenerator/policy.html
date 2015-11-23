@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Syllabus Generator </title>
+   <link rel="stylesheet" href="/stylesheets/style.css">
+      <style type="text/css">
+#s4{color:white; background-color:black; }
+#content{
+left:184px;}
+
+	#b1, #b2, #b3, #b4, #b5, #b6, #savePolicy
+	{
+    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 58px;
+    padding: 5px 0px;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}
+	#b1:hover, #b2:hover, 
+	#b3:hover, #b4:hover, #b5:hover, #b6:hover, #savePolicy:hover
+	{
+		background-color:#FFDE80;
+	}
+	#b3{position:absolute;}
+	#b6{
+    position: absolute;
+    right: 212px;
+	}
+	#pInput{    width: 400px;
+    height: 100px;
+	}
+}
+
+  </style>
+</head>
+
+<body>
+	  <form id = generateForm method = 'post', action = '' autocomplete="off">	
+  <div id='mainDiv'>
+    <a href='/' id='logout'>Logout</a>
+    <div>
+      <div id='navigation'>
+        <div id='panther'>
+          <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+        </div>
+        <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+        </div>
+      </div>
+      <div id='content'>
+	  <h2>Edit Student Policies</h2>
+  <div>
+
+    <div>
+      Previous Student Policy:
+      <select name='previousPolicy' style="width: 150px">
+			{% for i in range (0,policies|length) %}
+			<option value='{{i}}'>{{policies[i].name}}</option>
+			{% endfor %}
+      </select>
+      <input type='submit' id='b1' value='Load' name = 'generate'>
+	
+      <p>Title
+        <input type='text' value={{name}} name = 'name'>
+      </p>
+      <div>
+        <input type='text' id='pInput' value={{policy}} name = 'policy'>
+        <input type='submit' id='savePolicy' value='Save' name = 'generate'>
+      </div>
+
+    </div>
+    <h2>Add Student Policies To Syllabus</h2>
+    <select name='unselectedPolicies' size='5' id='Course' style="width: 130px">
+      </br>
+			{% for i in range (0,uPolicies|length) %}
+			<option value='{{i}}'>{{uPolicies[i].name}}</option>
+			{% endfor %}
+    </select>
+    
+     <input type='submit' id='b4' value='Remove' name = 'generate'>
+    <input type='submit' id='b5' value='Add' name = 'generate'>
+   
+    <select name='selectedPolicies' size='5' id='Course' style="width: 130px">
+      </br>
+			{% for i in range (0,sPolicies|length) %}
+			<option value='{{i}}'>{{sPolicies[i].name}}</option>
+			{% endfor %}
+    </select>
+  </div>
+
+      </div>
+    </div>
+    <div id='pagingDiv'>
+      <a href='/gradescale' id='leftButton' class='button'>Back</a>
+      <a href='/calendar' id='rightButton' class='button'>Next</a>
+    </div>
+  </div>
+  	  </form>
+</body>
+
+</html>

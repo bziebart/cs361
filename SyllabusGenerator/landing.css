@@ -1,0 +1,123 @@
+html,body{height:100%;}
+
+body{
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    background-color: #FFbd00;
+}
+
+#mainDiv {
+ position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 800px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: sans-serif;
+    box-shadow: -6px 6px 6px;
+	}
+	
+#logout {
+    position: absolute;
+    top: -25px;
+    right: 20px;
+    color: black;
+    font-size: 12px;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+#logout:hover{
+	color:#5382af;
+}
+
+a.button{
+
+    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 70px;
+    padding: 12px 45px;
+    margin: 10px auto;
+	box-shadow: -1px 1px 2px;
+	text-decoration: none;
+}
+
+
+
+a.button:hover{
+background-color:#FFDE80;
+}
+
+#pagingDiv{
+position:absolute;
+bottom:0px;
+    text-align: center;
+	width:100%;
+}
+
+#rightButton{
+float: right;
+    margin: -10px 15px 18px 0px;
+	padding: 8px 15px;
+}
+#leftButton{
+    float: left;
+    margin: -10px 0px 0px 15px;
+		padding: 8px 15px;
+}
+
+input:focus {
+    background-color: aliceblue;
+	outline:none;
+	
+}
+
+#userId, #userPassword{
+margin: 10px auto;
+    width: 80%;
+    height: 25px;
+    border-radius: 10px;
+	text-align:center;
+}
+
+#userPassword{
+-webkit-text-security: disc;
+}
+	#landingDiv {
+    width: 50%;
+    margin: 160px auto;
+    height: 50%;
+    font-family: sans-serif;
+	text-align: center;
+	}
+	
+#navigation{
+width: 100%;
+    height: 75px;
+    top: 20px;
+	position:absolute;
+	    overflow: hidden;
+		    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#pantherImage{
+    position: absolute;
+    top: -65px;
+}
+
+#pantherTextImage{
+width: 66%;
+    position: absolute;
+    right: 16px;
+    top: -3px;
+}

@@ -1,0 +1,91 @@
+<html>
+
+<head>
+  <title> Syllabus Generator </title>
+  <link rel="stylesheet" href="stylesheets/style.css"></link>
+  <style>
+  #s2{color:white; background-color:black; }
+  #books(width:250px;}
+  	#addBookButton,#deleteBookButton{
+    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}
+  </style>
+</head>
+
+<body>
+  <div id='mainDiv'>
+    <a href='/' id='logout'>Logout</a>
+    <div>
+      <div id='navigation'>
+        <div id='panther'>
+          <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+        </div>
+
+        <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+        </div>
+      </div>
+      <div id='content'>
+        <h1 style="margin: 60px 0px 40px 284px;">Current Books</h1>
+        <form action='/remove' method='post'>
+          <select size='5' name='syllabusBooks' id='books' style="width: 250px;margin: 0px 0px 0px 280px;">
+            {% for b in termBooks %}
+              <option value='{{ b.bKey }}'>{{ b.name }}</option>
+            {% endfor %}
+          </select>
+      </div>
+    </div>
+    <div id='pagingDiv'>
+        <input type='submit' id='deleteBookButton' value='Remove Book' name='removeFromSyllabus' style="border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}" />
+      </form>
+      <form action='/textbook' method='get'>
+        <input type='submit' id='addBookButton' value='Add Book' style="border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}" >
+      </form>
+
+      <a href='/lecture' id='leftButton' class='button'>Back</a>
+      <a href='/gradescale' id='rightButton' class='button'>Next</a>
+    </div>
+  </div>
+</body>
+
+</html>

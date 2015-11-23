@@ -1,0 +1,141 @@
+{% autoescape true %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <title> Syllabus Generator </title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+      <style type="text/css">
+         #s1{color:white; background-color:black; }
+      </style>
+   </head>
+   <body>
+      <div id='mainDiv'>
+         <a href='/' id='logout'>Logout</a>
+         <div>
+            <div id='navigation'>
+               <div id='panther'>
+                  <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+               </div>
+               <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+               </div>
+            </div>
+            <div id='content'>
+               <style>
+                  #lectureInfoForm
+                  {
+                  border: 1px solid black;
+                  border-collapse: collapse;
+                  margin: 10px auto;
+                  width: 80%;
+                  text-align:center;
+                  }
+                  #content
+                  {
+                  left: 0%;
+                  width: 100%
+                  }
+                  #lectureButton
+                  {
+                  border: 0 none;
+                  border-radius: 10px;
+                  background-color: #FFbd00;
+                  color: black;
+                  cursor: pointer;
+                  display: inline-block;
+                  font-size: 14px;
+                  width: 80%;
+                  padding: 12px 0px;
+                  margin: 10px auto;
+                  box-shadow: -1px 1px 2px;
+                  text-decoration: none;
+                  }
+                  #lectureButton:hover
+                  {
+                  background-color:#FFDE80;
+                  }
+				  table{width:100%}
+				  #lectureButton{
+					border: 0 none;
+					border-radius: 10px;
+					background-color: #FFbd00;
+					color: black;
+					cursor: pointer;
+					display: inline-block;
+					font-size: 14px;
+					width: 50%;
+					padding: 6px 15px;
+					margin: 10px auto 10px 0%;
+					box-shadow: -1px 1px 2px;
+					text-decoration: none;
+				  }
+               </style>
+               <form id = lectureInfoForm method = 'post', action = ''>
+                  <table>
+                     <tr>
+                        <td>Subject:</td>
+                        <td><input type ='text' name = 'subject' maxlength = '7' autofocus required value ='{{subject}}' /> </td>
+                        <td>Class Title: </td>
+                        <td><input type ='text' name = 'title' required value ='{{title}}' /></td>
+                     </tr>
+                     <tr>
+                        <td>Course Number:</td>
+                        <td><input type = 'number' name = 'coursenumber' min = 100 required value = '{{courseNumber}}' /></td>
+                        <td>Section Number:</td>
+                        <td><input type = 'number' name = 'sectionnumber' min = 100 required value = '{{sectionNumber}}' /> </td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td>Location:</td>
+                        <td><input type ='text' name = 'classLocation' required value ='{{classLocation}}' /></td>
+                     </tr>
+                     <tr>
+                        <td/>
+                        <td>Professor:</td>
+                        <td><input type ='text' name = 'professorName' required value ='{{professorName}}' /></td>
+                     </tr>
+                     <tr>
+                        <td>Professor Office Location: </td>
+                        <td><input type ='text' name = 'professorOfficeLocation' required value ='{{professorOfficeLocation}}' /></td>
+                        <td>Professor Office Hours: </td>
+                        <td><input type ='text' name = 'professorOfficeHours' required value ='{{professorOfficeHours}}' /></td>
+                     </tr>
+                     <tr>
+                        <td/>
+                        <td>Teaching Assistant:</td>
+                        <td><input type ='text' name = 'TAName' required value ='{{taname}}' /></td>
+                     </tr>
+                     <tr>
+                        <td>TA Office Location: </td>
+                        <td><input type ='text' name = 'taOfficeLocation' required value ='{{taOfficeLocation}}' /></td>
+                        <td>TA Office Hours: </td>
+                        <td><input type ='text' name = 'taOfficeHours' required value ='{{taOfficeHours}}' /></td>
+                     </tr>
+                     <tr>
+                        <td>Start Date: </td>
+                        <td><input type="date" name="startDate" value = '{{startDate}}' /></td>
+                        <td>End Date: </td>
+                        <td><input type="date" name="endDate" value ='{{endDate}}' /></td>
+                     </tr>
+                     <tr>
+                        <td/>
+                        <td>Days of the Week: </td>
+                        <td><input type ='text' name = 'daysOfWeek' value = '{{daysOfWeek}}' /></td>
+                     </tr>
+                  </table>
+                  <input id = lectureButton type = 'submit' value = 'Submit Lecture Information'>
+               </form>
+            </div>
+         </div>
+         <div id='pagingDiv'>
+            <a href='/display' id='rightButton' class='button'>Next</a>
+         </div>
+      </div>
+   </body>
+</html>
+{% endautoescape %}

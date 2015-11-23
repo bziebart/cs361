@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <title> Syllabus Generator </title>
+  <link rel="stylesheet" href="stylesheets/style.css"></link>
+  <style>
+  #content{    position: absolute;
+    top: 170px;
+    left: 250px;}
+	#syllabusSelect{    left: 32px;
+    top: 85px;
+    position: absolute;
+    width: 250px;}
+	#pagingDiv {
+    position: absolute;
+    bottom: 196px;
+    text-align: center;
+    width: 100%;}
+	#createTerm,#selectTerm
+	{
+    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;
+	}
+	#createTerm:hover,#selectTerm:hover
+	{
+		background-color:#FFDE80;
+	}
+	#pagingDiv {
+    position: absolute;
+    bottom: 148px;
+    text-align: center;
+    width: 100%;
+}
+}
+  </style>
+</head>
+
+<body>
+  <div id='mainDiv'>
+    <a href='/' id='logout'>Logout</a>
+    <div>
+      <div id='navigation'>
+        <div id='panther'>
+          <img src="/stylesheets/panther.png" alt="" id="pantherImage">
+        </div>
+
+        <div id='pantherText'>
+                  <a href='/lecture' id='s1' class='button'>Lecture</a>
+                  <a href='/display' id='s2' class='button'>Textbooks</a>
+                  <a href='/gradescale' id='s3' class='button'>Grading</a>
+                  <a href='/policy' id='s4' class='button'>Policy</a>
+                  <a href='/calendar' id='s5' class='button'>Calendar</a>
+                  <a href='/preview' id='s6' class='button'>Preview</a>
+        </div>
+      </div>
+      <div id='content'>
+      <form action='/display' method='post'>
+        <h1>Syllabus Templates</h1>
+          <select name='syllabus' id='syllabusSelect'>
+            {% for s in tempSyllabus %}
+              <option value='{{ s.name }}'>{{ s.name }}</option>
+            {% endfor %}
+            <option>------Select------</option>
+          </select>
+      </div>
+    </div>
+    <div id='pagingDiv'>
+        <input type='submit' value='Select' id='selectTerm' style="    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;"/>
+      </form>
+      <!--<a href='gradescale.html' id='leftButton' class='button'>Select</a>
+      <a href='gradescale.html' id='rightButton' class='button'>Create New</a>-->
+      <form action='/newSyllabus' method='post'>
+        <p>Name: <input type='text' name='newSyllabus'/></p>
+        <input type='submit' value='Create New' id='createTerm' style="    border: 0 none;
+    border-radius: 10px;
+    background-color: #FFbd00;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    width: 125px;
+    padding: 5px 0px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px;
+    text-decoration: none;"/>
+      </form>
+
+      <!--<form action='/clear' method='get'>
+        <input type='submit' value='Delete Syllabus'/>
+      </form>-->
+    </div>
+  </div>
+</body>
+
+</html>
