@@ -1,3 +1,9 @@
 Hey this is brian's test for committing/pushing/pulling.
 
+<<<<<<< HEAD
 These are Patrick's Edits.
+
+Test Jerry Why
+=======
+These are Patrick's Edits.
+>>>>>>> 2a93dd1f85358ee2175d8e24ecf07ccc3ca860a5
