@@ -1,0 +1,36 @@
+table, th, td 
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 10px auto;
+    text-align:left;
+}
+table{
+    width: 80%
+}
+
+#content{
+    position: absolute;
+    overflow-y: scroll;
+    height: 425px;
+}
+#b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b10, #b11
+{
+border: 0 none;
+border-radius: 10px;
+background-color: #FFbd00;
+color: black;
+cursor: pointer;
+display: inline-block;
+font-size: 14px;
+width: 125px;
+padding: 5px 0px;
+margin: 10px auto;
+box-shadow: -1px 1px 2px;
+text-decoration: none;
+}
+#b1:hover, #b2:hover, 
+#b3:hover, #b4:hover, #b5:hover, #b6:hover, #b7:hover, #b8:hover,#b10:hover, #b11:hover
+{
+    background-color:#FFDE80;
+}
